@@ -1,0 +1,20 @@
+{
+  "bitwise": true,
+  "browser": true,
+  "browserify": true,
+  "curly": true,
+  "devel": true,
+  "eqeqeq": true,
+  "esnext": true,
+  "funcscope": false,
+  "jasmine": true,
+  "latedef": "nofunc",
+  "maxcomplexity": 10,
+  "maxdepth": 3,
+  "maxparams": 5,
+  "noarg": true,
+  "shadow": "outer",
+  "undef": true,
+  "unused": true,
+  "varstmt": true
+}

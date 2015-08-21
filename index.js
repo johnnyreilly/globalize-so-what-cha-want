@@ -1,8 +1,9 @@
+/* jshint varstmt: false, esnext: false */
 var DEPENDENCY_TYPES = {
   SHARED_JSON: 'Shared JSON (used by all locales)',
   LOCALE_JSON: 'Locale specific JSON (supplied for each locale)',
   MODULE: 'Another modules JSON'
-}
+};
 
 var moduleDependencies = {
   'core': [
@@ -72,7 +73,7 @@ function _populateDependencies(module, jsonDeps) {
     else if (jsonDeps.indexOf(dependency.dependency) === -1) {
       jsonDeps.push(dependency.dependency);
     }
-  })
+  });
   return jsonDeps;
 }
 
