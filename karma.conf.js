@@ -39,6 +39,13 @@ module.exports = function(config) {
       }
     },
 
+    // the default configuration
+    junitReporter: {
+      outputDir: 'test-results', // results will be saved as $outputDir/$browserName.xml
+      outputFile: undefined, // if included, results will be saved as $outputDir/$browserName/$outputFile
+      suite: ''
+    },
+
     coverageReporter: {
       reporters:[
         //{type: 'html', dir:'coverage/'},  // https://github.com/karma-runner/karma-coverage/issues/123
