@@ -1,0 +1,25 @@
+version: 1.0.{build}
+
+# environment variables
+environment:
+  GithubEmail: johnny_reilly@hotmail.com
+  GithubUsername: johnnyreilly
+  GithubPersonalAccessToken:
+    secure: T4M/N+e/baksVoeWoYKPWIpfahOsiSFw/+Zc81VuThZmWEqmrRtgEHUyin0vCWhl
+
+branches:
+  only:
+    - master
+
+# scripts to run before build
+before_build:
+- cmd: >-
+    npm install
+
+build_script:
+- cmd: >-
+    npm run test
+
+before_test:
+- ps: >-
+    ./registerTestResults.ps1

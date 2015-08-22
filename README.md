@@ -1,5 +1,7 @@
 # Globalize So What'cha Want
 
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/johnnyreilly/globalize-so-what-cha-want?retina=true)](https://ci.appveyor.com/project/JohnReilly/globalize-so-what-cha-want)
+
 Tell me what Globalize modules you want to use, I'll tell you what you need.
 
 ## Usage
@@ -26,7 +28,7 @@ var requiredCldrGlobalizeFiles = soWhatchaWant.determineRequiredCldrGlobalizeFil
 //   'globalize/number.js',
 //   'globalize/plural.js',
 //   'globalize/relative-time.js' ]
-  
+
 var requiredCldrData = soWhatchaWant.determineRequiredCldrData(globalizeOptions);
 
 // [ 'cldr/main/{locale}/currencies.json',
@@ -41,5 +43,5 @@ var requiredCldrData = soWhatchaWant.determineRequiredCldrData(globalizeOptions)
 //   'cldr/supplemental/timeData.json',
 //   'cldr/supplemental/weekData.json',
 //   'cldr/main/{locale}/dateFields.json' ]
-  
+
 ```
