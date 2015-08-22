@@ -49,7 +49,7 @@ describe('determineRequiredCldrData', () => {
 });
 
 describe('determineRequiredCldrGlobalizeFiles', () => {
-  it('should return all JSON requiredments', () => {
+  it('should return all cldr / globalize files', () => {
     const requiredCldrGlobalizeFiles = determineRequiredCldrGlobalizeFiles(globalizeOptionsAll);
     expect(requiredCldrGlobalizeFiles).toEqual([
       'cldr.js',
@@ -65,7 +65,7 @@ describe('determineRequiredCldrGlobalizeFiles', () => {
     ]);
   });
 
-  it('should return subset of JSON requiredments', () => {
+  it('should return subset of cldr / globalize files', () => {
     const requiredCldrGlobalizeFiles = determineRequiredCldrGlobalizeFiles(globalizeOptionsDateNumber);
     expect(requiredCldrGlobalizeFiles).toEqual([
       'cldr.js',
