@@ -18,7 +18,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="container-fluid">
-        Hello!
+        <h1>Welcome to Globalize &middot; So What&#39;cha Want</h1>
       </div>
     );
   }
