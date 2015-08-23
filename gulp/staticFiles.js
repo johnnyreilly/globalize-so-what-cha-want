@@ -3,7 +3,7 @@ var gulp = require('gulp');
 var cache = require('gulp-cached');
 
 var targets = [
-  { description: 'FONTS', src: './fonts/*', dest: './dist/fonts' },
+  //{ description: 'FONTS', src: './fonts/*', dest: './dist/fonts' },
   { description: 'INDEX', src: './src/demo/index.html', dest: './dist' }
 ];
 

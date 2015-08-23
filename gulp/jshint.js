@@ -21,6 +21,6 @@ function hint(options) {
 }
 
 module.exports = {
-  build: function() { return hint({ shouldWatch: true }); },
-  watch: function() { return hint({ shouldWatch: true }); }
+  build: function() { return hint({ shouldWatch: false }); },
+  watch: function() { return hint({ shouldWatch: true  }); }
 };
