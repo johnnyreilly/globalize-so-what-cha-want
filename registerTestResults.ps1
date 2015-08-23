@@ -14,12 +14,12 @@ foreach ($testsuite in $testsuites.testsuite) {
 
         if ($failed) {
             write-host "Failed   $($testcase.name) $($testcase.failure.message)"
-            Add-AppveyorTest $testcase.name -Outcome Failed -FileName $testsuite.name -ErrorMessage $testcase.failure.message -Duration $time
+            Add-AppveyorTest $testName -Outcome Failed -FileName $testsuite.name -ErrorMessage $testcase.failure.message -Duration $time
             $anyFailures = $TRUE
         }
         else {
             write-host "Passed   $($testcase.name)"
-            Add-AppveyorTest $testcase.name -Outcome Passed -FileName $testsuite.name -Duration $time
+            Add-AppveyorTest $testName -Outcome Passed -FileName $testsuite.name -Duration $time
         }
     }
 }
