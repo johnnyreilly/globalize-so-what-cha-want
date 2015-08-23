@@ -10,8 +10,8 @@ function runTests(options) {
     singleRun: !options.shouldWatch,
 
     // Fancy runner
-    plugins: ['karma-jasmine','karma-mocha-reporter', 'karma-coverage', 'karma-browserify', 'karma-phantomjs-launcher', 'karma-phantomjs-shim'], // karma-phantomjs-shim only in place until PhantomJS hits 2.0 and has function.bind
-    reporters: ['mocha']
+    plugins: ['karma-jasmine','karma-mocha-reporter', 'karma-junit-reporter', 'karma-coverage', 'karma-browserify', 'karma-phantomjs-launcher', 'karma-phantomjs-shim'], // karma-phantomjs-shim only in place until PhantomJS hits 2.0 and has function.bind
+    reporters: (options.isDevelopment ? ['mocha'] : ['mocha','junit'])
   };
 
   new Server(karmaConfig, karmaCompleted).start();
@@ -27,6 +27,6 @@ function runTests(options) {
 }
 
 module.exports = {
-  build: function(done) { return runTests({ done: done, shouldWatch: false }); },
-  watch: function(done) { return runTests({ done: done, shouldWatch: true  }); }
+  build: function(done) { return runTests({ done: done, isDevelopment: false, shouldWatch: false }); },
+  watch: function(done) { return runTests({ done: done, isDevelopment: true,  shouldWatch: true  }); }
 };
