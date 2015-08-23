@@ -4,7 +4,7 @@ var jshint = require('gulp-jshint');
 var jsx = require('jshint-jsx');
 var stylish = require('jshint-stylish');
 
-var src = ['./index.js', './test/**/*.js'];
+var src = ['./index.js', './src/**/*.js', './test/**/*.js'];
 
 function hint(options) {
   function run() {
