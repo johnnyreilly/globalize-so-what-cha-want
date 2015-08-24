@@ -22,15 +22,19 @@ class App extends React.Component {
   render() {
     const { modulesState } = this.state;
     const modules = Object.keys(modulesState).map(mod => <li key={mod}>{ mod + ': ' + modulesState[mod] }</li>);
-    const modules2 = Object.keys(modulesState).map(mod => <Module key={mod} moduleName={ mod } isSelected={ modulesState[mod] } handleSelectionChange={ this._handleSelectionChange } />);
+    const modulesToSelect = Object.keys(modulesState).map(mod => <div className="col-md-4">
+        <Module key={mod} moduleName={ mod } isSelected={ modulesState[mod] } handleSelectionChange={ this._handleSelectionChange } />
+      </div>);
 
     return (
       <div className="container-fluid">
         <h1>Welcome to Globalize &middot; So What&#39;cha Want</h1>
+        <div className="row">
+          { modulesToSelect }
+        </div>
         <ul>
           { modules }
         </ul>
-        { modules2 }
       </div>
     );
   }

@@ -8,11 +8,18 @@ class Module extends React.Component {
 
   render() {
     return (
-      <div className="checkbox">
-        <label>
-          <input type="checkbox" value="" checked={ this.props.isSelected } onChange={ this._onSelectionChanged } />
-          { this.props.moduleName }
-        </label>
+      <div className="panel panel-primary">
+        <div className="panel-heading">
+          <h3 className="panel-title">{ this.props.moduleName }</h3>
+        </div>
+        <div className="panel-body">
+          <div className="checkbox">
+            <label>
+              <input type="checkbox" value="" checked={ this.props.isSelected } onChange={ this._onSelectionChanged } />
+              { this.props.moduleName }
+            </label>
+          </div>
+        </div>
       </div>
     );
   }
