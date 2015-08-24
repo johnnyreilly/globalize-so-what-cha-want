@@ -7,18 +7,18 @@ class Module extends React.Component {
   }
 
   render() {
+    const fontClass = 'glyphicon ' + (this.props.isSelected ? 'glyphicon-ok' : 'glyphicon-remove');
+    const panelClass = 'panel ' + (this.props.isSelected ? 'panel-success' : 'panel-danger');
     return (
-      <div className="panel panel-primary">
+      <div className={ panelClass } style={{ cursor: 'pointer' }} onClick={ this._onSelectionChanged }>
         <div className="panel-heading">
-          <h3 className="panel-title">{ this.props.moduleName }</h3>
+          <h3 className="panel-title">
+            { this.props.moduleName + ' ' }
+            <span className={ fontClass }></span>
+          </h3>
         </div>
         <div className="panel-body">
-          <div className="checkbox">
-            <label>
-              <input type="checkbox" value="" checked={ this.props.isSelected } onChange={ this._onSelectionChanged } />
-              { this.props.moduleName }
-            </label>
-          </div>
+            { this.props.description }
         </div>
       </div>
     );
