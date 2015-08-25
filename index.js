@@ -58,7 +58,9 @@ function determineRequiredCldrData(globalizeOptions) {
 
   var jsonDeps = [];
   modules.forEach(function (module) {
-    _populateDependencies(module, jsonDeps);
+    if (globalizeOptions[module]) {
+      _populateDependencies(module, jsonDeps);
+    }
   });
 
   return jsonDeps;

@@ -1,7 +1,8 @@
 import React from 'react/addons';
 import ModuleStore from '../stores/ModuleStore';
-import Module from './Module';
+import ModuleSelector from './ModuleSelector';
 import * as ModuleActions from '../actions/ModuleActions';
+import { determineRequiredCldrData, determineRequiredCldrGlobalizeFiles } from '../../../index';
 
 class App extends React.Component {
   constructor(props) {
@@ -22,26 +23,33 @@ class App extends React.Component {
   render() {
     const { modulesState } = this.state;
     const optionsSelected = Object.assign({}, ...Object.keys(modulesState).map(mod => ({ [`${mod}`]: modulesState[mod].isSelected })));
-    console.log(optionsSelected);
-    const modules = Object.keys(modulesState).map(mod => <li key={mod}>{ mod + ': ' + modulesState[mod] }</li>);
-    const modulesToSelect = Object.keys(modulesState).map(mod => <div className="col-md-4">
-        <Module key={mod}
-          moduleName={ mod }
-          description={ modulesState[mod].description }
-          isSelected={ modulesState[mod].isSelected }
-          handleSelectionChange={ this._handleSelectionChange } />
-      </div>);
+    //const modules = Object.keys(modulesState).map(mod => <li key={mod}>{ mod + ': ' + modulesState[mod].isSelected }</li>);
+    const requiredCldrJson = determineRequiredCldrData(optionsSelected).map(file => <li key={file}>{file}</li>);
+    const requiredCldrGlobalizeFiles = determineRequiredCldrGlobalizeFiles(optionsSelected).map(file => <li key={file}>{file}</li>);
 
     return (
       <div className="container-fluid">
         <h1>Welcome to Globalize &middot; So What&#39;cha Want</h1>
+
         <p>Tell me what <a href="https://github.com/jquery/globalize">Globalize</a> modules you want to use, I&#39;ll tell you what you need.</p>
+
+        <ModuleSelector modulesState={ modulesState } handleSelectionChange={ this._handleSelectionChange } />
+
         <div className="row">
-          { modulesToSelect }
+          <div className="col-md-6">
+            <h4>Required CLDR / Globalize files</h4>
+            <ul>
+              { requiredCldrGlobalizeFiles }
+            </ul>
+          </div>
+
+          <div className="col-md-6">
+            <h4>Required CLDR JSON</h4>
+            <ul>
+              { requiredCldrJson }
+            </ul>
+          </div>
         </div>
-        <ul>
-          { modules }
-        </ul>
       </div>
     );
   }
