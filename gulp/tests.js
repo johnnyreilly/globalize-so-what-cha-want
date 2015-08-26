@@ -16,17 +16,13 @@ function runTests(options) {
 
   new Server(karmaConfig, karmaCompleted).start();
 
-  function karmaCompleted(karmaResult) {
-    gutil.log('Karma completed!');
-    if (karmaResult === 1) {
-      options.done('karma: tests failed with code ' + karmaResult);
-    } else {
-      options.done();
-    }
+  function karmaCompleted(exitCode) {
+    gutil.log('Karma has exited with ' + exitCode);
+    process.exit(exitCode);
   }
 }
 
 module.exports = {
   build: function(done) { return runTests({ done: done, isDevelopment: false, shouldWatch: false }); },
-  watch: function(done) { return runTests({ done: done, isDevelopment: true,  shouldWatch: true  }); }
+  watch: function()     { return runTests({             isDevelopment: true,  shouldWatch: true  }); }
 };

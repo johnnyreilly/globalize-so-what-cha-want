@@ -56,11 +56,11 @@ describe('determineRequiredCldrGlobalizeFiles', () => {
       'cldr/event.js',
       'cldr/supplemental.js',
       'globalize.js',
+      'globalize/number.js',
+      'globalize/plural.js',
       'globalize/currency.js',
       'globalize/date.js',
       'globalize/message.js',
-      'globalize/number.js',
-      'globalize/plural.js',
       'globalize/relative-time.js'
     ]);
   });
@@ -72,8 +72,8 @@ describe('determineRequiredCldrGlobalizeFiles', () => {
       'cldr/event.js',
       'cldr/supplemental.js',
       'globalize.js',
-      'globalize/date.js',
-      'globalize/number.js'
+      'globalize/number.js',
+      'globalize/date.js'
     ]);
   });
 });

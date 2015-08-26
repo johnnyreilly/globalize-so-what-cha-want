@@ -12,9 +12,9 @@ gulp.task('build', function(done) {
   tests.build(done);
 });
 
-gulp.task('watch', function(done) {
+gulp.task('watch', function() {
   browserify.watch();
   jshint.watch();
   staticFiles.watch();
-  tests.watch(done);
+  tests.watch();
 });

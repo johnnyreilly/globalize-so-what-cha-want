@@ -6,16 +6,16 @@ var DEPENDENCY_TYPES = {
 
 var moduleDependencies = {
   'core': {
-    requiredModules: [],
-    cldrGlobalize: ['cldr.js', 'cldr/event.js', 'cldr/supplemental.js', 'globalize.js'],
+    dependsUpon: [],
+    cldrGlobalizeFiles: ['cldr.js', 'cldr/event.js', 'cldr/supplemental.js', 'globalize.js'],
     json: [
       { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/likelySubtags.json' }
     ]
   },
 
   'currency': {
-    requiredModules: ['number','plural'],
-    cldrGlobalize: ['globalize/currency.js'],
+    dependsUpon: ['number','plural'],
+    cldrGlobalizeFiles: ['globalize/currency.js'],
     json: [
       { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/currencies.json' },
       { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/currencyData.json' }
@@ -23,8 +23,8 @@ var moduleDependencies = {
   },
 
   'date': {
-    requiredModules: ['number'],
-    cldrGlobalize: ['globalize/date.js'],
+    dependsUpon: ['number'],
+    cldrGlobalizeFiles: ['globalize/date.js'],
     json: [
       { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/ca-gregorian.json' },
       { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/timeZoneNames.json' },
@@ -34,14 +34,14 @@ var moduleDependencies = {
   },
 
   'message': {
-    requiredModules: ['core'],
-    cldrGlobalize: ['globalize/message.js'],
+    dependsUpon: ['core'],
+    cldrGlobalizeFiles: ['globalize/message.js'],
     json: []
   },
 
   'number': {
-    requiredModules: ['core'],
-    cldrGlobalize: ['globalize/number.js'],
+    dependsUpon: ['core'],
+    cldrGlobalizeFiles: ['globalize/number.js'],
     json: [
       { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/numbers.json' },
       { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/numberingSystems.json' }
@@ -49,8 +49,8 @@ var moduleDependencies = {
   },
 
   'plural': {
-    requiredModules: ['core'],
-    cldrGlobalize: ['globalize/plural.js'],
+    dependsUpon: ['core'],
+    cldrGlobalizeFiles: ['globalize/plural.js'],
     json: [
       { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/plurals.json' },
       { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/ordinals.json' }
@@ -58,8 +58,8 @@ var moduleDependencies = {
   },
 
   'relativeTime': {
-    requiredModules: ['number','plural'],
-    cldrGlobalize: ['globalize/relative-time.js'],
+    dependsUpon: ['number','plural'],
+    cldrGlobalizeFiles: ['globalize/relative-time.js'],
     json: [
       { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/dateFields.json' }
     ]
@@ -67,7 +67,11 @@ var moduleDependencies = {
 };
 
 function determineRequiredCldrData(globalizeOptions) {
-  return determineRequired(globalizeOptions, 'json', function(item) { return item.dependency; });
+  return determineRequired(globalizeOptions, 'json', function(json) { return json.dependency; });
+}
+
+function determineRequiredCldrGlobalizeFiles(globalizeOptions) {
+  return determineRequired(globalizeOptions, 'cldrGlobalizeFiles', function(cldrGlobalizeFile) { return cldrGlobalizeFile; });
 }
 
 function determineRequired(globalizeOptions, requiredArray, requiredArrayGetter) {
@@ -91,7 +95,7 @@ function determineRequired(globalizeOptions, requiredArray, requiredArrayGetter)
 function _populateDependencies(module, requireds, requiredArray, requiredArrayGetter) {
   var dependencies = moduleDependencies[module];
 
-  dependencies.requiredModules.forEach(function(requiredModule) {
+  dependencies.dependsUpon.forEach(function(requiredModule) {
     _populateDependencies(requiredModule, requireds, requiredArray, requiredArrayGetter);
   });
 
@@ -104,7 +108,7 @@ function _populateDependencies(module, requireds, requiredArray, requiredArrayGe
 
   return requireds;
 }
-
+/*
 function determineRequiredCldrGlobalizeFiles(globalizeOptions){
   var requiredFiles = ['cldr.js', 'cldr/event.js', 'cldr/supplemental.js', 'globalize.js'];
   if (globalizeOptions.currency)     { requiredFiles.push('globalize/currency.js'); }
@@ -116,7 +120,7 @@ function determineRequiredCldrGlobalizeFiles(globalizeOptions){
 
   return requiredFiles;
 }
-
+*/
 module.exports = {
   determineRequiredCldrData: determineRequiredCldrData,
   determineRequiredCldrGlobalizeFiles: determineRequiredCldrGlobalizeFiles
