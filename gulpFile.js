@@ -5,11 +5,11 @@ var jshint = require('./gulp/jshint');
 var tests = require('./gulp/tests');
 var staticFiles = require('./gulp/staticFiles');
 
-gulp.task('build', function(done) {
+gulp.task('build', function() {
   browserify.build();
   jshint.build();
   staticFiles.build();
-  tests.build(done);
+  tests.build();
 });
 
 gulp.task('watch', function() {

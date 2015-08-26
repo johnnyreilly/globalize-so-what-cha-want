@@ -23,6 +23,6 @@ function runTests(options) {
 }
 
 module.exports = {
-  build: function(done) { return runTests({ done: done, isDevelopment: false, shouldWatch: false }); },
-  watch: function()     { return runTests({             isDevelopment: true,  shouldWatch: true  }); }
+  build: function() { return runTests({ isDevelopment: false, shouldWatch: false }); },
+  watch: function() { return runTests({ isDevelopment: true,  shouldWatch: true  }); }
 };
