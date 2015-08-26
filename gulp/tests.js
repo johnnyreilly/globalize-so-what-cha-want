@@ -14,7 +14,7 @@ function runTests(options) {
     reporters: (options.isDevelopment ? ['mocha'] : ['mocha','junit'])
   };
 
-  new Server(karmaConfig, karmaCompleted).start();
+  new Server(karmaConfig, (options.shouldWatch ? karmaCompleted : options.done)).start();
 
   function karmaCompleted(exitCode) {
     gutil.log('Karma has exited with ' + exitCode);
@@ -23,6 +23,6 @@ function runTests(options) {
 }
 
 module.exports = {
-  build: function() { return runTests({ isDevelopment: false, shouldWatch: false }); },
-  watch: function() { return runTests({ isDevelopment: true,  shouldWatch: true  }); }
+  build: function(done) { return runTests({ done: done, isDevelopment: false, shouldWatch: false }); },
+  watch: function(    ) { return runTests({             isDevelopment: true,  shouldWatch: true  }); }
 };
