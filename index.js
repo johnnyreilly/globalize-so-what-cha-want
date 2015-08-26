@@ -1,54 +1,76 @@
 /* jshint varstmt: false, esnext: false */
 var DEPENDENCY_TYPES = {
   SHARED_JSON: 'Shared JSON (used by all locales)',
-  LOCALE_JSON: 'Locale specific JSON (supplied for each locale)',
-  MODULE: 'Another modules JSON'
+  LOCALE_JSON: 'Locale specific JSON (supplied for each locale)'
 };
 
 var moduleDependencies = {
-  'core': [
-    { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/likelySubtags.json' }
-  ],
+  'core': {
+    requiredModules: [],
+    cldrGlobalize: ['cldr.js', 'cldr/event.js', 'cldr/supplemental.js', 'globalize.js'],
+    json: [
+      { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/likelySubtags.json' }
+    ]
+  },
 
-  'currency': [
-    { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/currencies.json' },
-    { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/currencyData.json' },
-    { dependencyType: DEPENDENCY_TYPES.MODULE,      dependency: 'number' },
-    { dependencyType: DEPENDENCY_TYPES.MODULE,      dependency: 'plural' }
-  ],
+  'currency': {
+    requiredModules: ['number','plural'],
+    cldrGlobalize: ['globalize/currency.js'],
+    json: [
+      { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/currencies.json' },
+      { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/currencyData.json' }
+    ]
+  },
 
-  'date': [
-    { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/ca-gregorian.json' },
-    { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/timeZoneNames.json' },
-    { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/timeData.json' },
-    { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/weekData.json' },
-    { dependencyType: DEPENDENCY_TYPES.MODULE,      dependency: 'number' }
-  ],
+  'date': {
+    requiredModules: ['number'],
+    cldrGlobalize: ['globalize/date.js'],
+    json: [
+      { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/ca-gregorian.json' },
+      { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/timeZoneNames.json' },
+      { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/timeData.json' },
+      { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/weekData.json' }
+    ]
+  },
 
-  'message': [
-    { dependencyType: DEPENDENCY_TYPES.MODULE,      dependency: 'core' }
-  ],
+  'message': {
+    requiredModules: ['core'],
+    cldrGlobalize: ['globalize/message.js'],
+    json: []
+  },
 
-  'number': [
-    { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/numbers.json' },
-    { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/numberingSystems.json' },
-    { dependencyType: DEPENDENCY_TYPES.MODULE,      dependency: 'core' }
-  ],
+  'number': {
+    requiredModules: ['core'],
+    cldrGlobalize: ['globalize/number.js'],
+    json: [
+      { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/numbers.json' },
+      { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/numberingSystems.json' }
+    ]
+  },
 
-  'plural': [
-    { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/plurals.json' },
-    { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/ordinals.json' },
-    { dependencyType: DEPENDENCY_TYPES.MODULE,      dependency: 'core' }
-  ],
+  'plural': {
+    requiredModules: ['core'],
+    cldrGlobalize: ['globalize/plural.js'],
+    json: [
+      { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/plurals.json' },
+      { dependencyType: DEPENDENCY_TYPES.SHARED_JSON, dependency: 'cldr/supplemental/ordinals.json' }
+    ]
+  },
 
-  'relativeTime': [
-    { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/dateFields.json' },
-    { dependencyType: DEPENDENCY_TYPES.MODULE,      dependency: 'number' },
-    { dependencyType: DEPENDENCY_TYPES.MODULE,      dependency: 'plural' }
-  ]
+  'relativeTime': {
+    requiredModules: ['number','plural'],
+    cldrGlobalize: ['globalize/relative-time.js'],
+    json: [
+      { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/dateFields.json' }
+    ]
+  }
 };
 
 function determineRequiredCldrData(globalizeOptions) {
+  return determineRequired(globalizeOptions, 'json', function(item) { return item.dependency; });
+}
+
+function determineRequired(globalizeOptions, requiredArray, requiredArrayGetter) {
   var modules = Object.keys(globalizeOptions);
   modules.forEach(function(module) {
     if (!moduleDependencies[module]) {
@@ -56,27 +78,31 @@ function determineRequiredCldrData(globalizeOptions) {
     }
   });
 
-  var jsonDeps = [];
+  var requireds = [];
   modules.forEach(function (module) {
     if (globalizeOptions[module]) {
-      _populateDependencies(module, jsonDeps);
+      _populateDependencies(module, requireds, requiredArray, requiredArrayGetter);
     }
   });
 
-  return jsonDeps;
+  return requireds;
 }
 
-function _populateDependencies(module, jsonDeps) {
+function _populateDependencies(module, requireds, requiredArray, requiredArrayGetter) {
   var dependencies = moduleDependencies[module];
-  dependencies.forEach(function(dependency) {
-    if (dependency.dependencyType === DEPENDENCY_TYPES.MODULE) {
-      _populateDependencies(dependency.dependency, jsonDeps);
-    }
-    else if (jsonDeps.indexOf(dependency.dependency) === -1) {
-      jsonDeps.push(dependency.dependency);
+
+  dependencies.requiredModules.forEach(function(requiredModule) {
+    _populateDependencies(requiredModule, requireds, requiredArray, requiredArrayGetter);
+  });
+
+  dependencies[requiredArray].forEach(function(required) {
+    var newRequired = requiredArrayGetter(required);
+    if (requireds.indexOf(newRequired) === -1) {
+      requireds.push(newRequired);
     }
   });
-  return jsonDeps;
+
+  return requireds;
 }
 
 function determineRequiredCldrGlobalizeFiles(globalizeOptions){

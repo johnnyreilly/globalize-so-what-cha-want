@@ -19,13 +19,13 @@ describe('determineRequiredCldrData', () => {
   it('should return all JSON requiredments', () => {
     const requiredCldrData = determineRequiredCldrData(globalizeOptionsAll);
     expect(requiredCldrData).toEqual([
-      'cldr/main/{locale}/currencies.json',
-      'cldr/supplemental/currencyData.json',
+      'cldr/supplemental/likelySubtags.json',
       'cldr/main/{locale}/numbers.json',
       'cldr/supplemental/numberingSystems.json',
-      'cldr/supplemental/likelySubtags.json',
       'cldr/supplemental/plurals.json',
       'cldr/supplemental/ordinals.json',
+      'cldr/main/{locale}/currencies.json',
+      'cldr/supplemental/currencyData.json',
       'cldr/main/{locale}/ca-gregorian.json',
       'cldr/main/{locale}/timeZoneNames.json',
       'cldr/supplemental/timeData.json',
@@ -37,13 +37,13 @@ describe('determineRequiredCldrData', () => {
   it('should return subset of JSON requiredments', () => {
     const requiredCldrData = determineRequiredCldrData(globalizeOptionsDateNumber);
     expect(requiredCldrData).toEqual([
+      'cldr/supplemental/likelySubtags.json',
+      'cldr/main/{locale}/numbers.json',
+      'cldr/supplemental/numberingSystems.json',
       'cldr/main/{locale}/ca-gregorian.json',
       'cldr/main/{locale}/timeZoneNames.json',
       'cldr/supplemental/timeData.json',
-      'cldr/supplemental/weekData.json',
-      'cldr/main/{locale}/numbers.json',
-      'cldr/supplemental/numberingSystems.json',
-      'cldr/supplemental/likelySubtags.json',
+      'cldr/supplemental/weekData.json'
     ]);
   });
 });
