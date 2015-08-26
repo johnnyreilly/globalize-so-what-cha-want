@@ -67,14 +67,14 @@ var moduleDependencies = {
 };
 
 function determineRequiredCldrData(globalizeOptions) {
-  return determineRequired(globalizeOptions, 'json', function(json) { return json.dependency; });
+  return determineRequired(globalizeOptions, _populateDependencyCurrier('json', function(json) { return json.dependency; }));
 }
 
 function determineRequiredCldrGlobalizeFiles(globalizeOptions) {
-  return determineRequired(globalizeOptions, 'cldrGlobalizeFiles', function(cldrGlobalizeFile) { return cldrGlobalizeFile; });
+  return determineRequired(globalizeOptions, _populateDependencyCurrier('cldrGlobalizeFiles', function(cldrGlobalizeFile) { return cldrGlobalizeFile; }));
 }
 
-function determineRequired(globalizeOptions, requiredArray, requiredArrayGetter) {
+function determineRequired(globalizeOptions, populateDependencies) {
   var modules = Object.keys(globalizeOptions);
   modules.forEach(function(module) {
     if (!moduleDependencies[module]) {
@@ -85,42 +85,34 @@ function determineRequired(globalizeOptions, requiredArray, requiredArrayGetter)
   var requireds = [];
   modules.forEach(function (module) {
     if (globalizeOptions[module]) {
-      _populateDependencies(module, requireds, requiredArray, requiredArrayGetter);
+      populateDependencies(module, requireds);
     }
   });
 
   return requireds;
 }
 
-function _populateDependencies(module, requireds, requiredArray, requiredArrayGetter) {
-  var dependencies = moduleDependencies[module];
+function _populateDependencyCurrier(requiredArray, requiredArrayGetter) {
+  var popDepFn = function(module, requireds) {
+    var dependencies = moduleDependencies[module];
 
-  dependencies.dependsUpon.forEach(function(requiredModule) {
-    _populateDependencies(requiredModule, requireds, requiredArray, requiredArrayGetter);
-  });
+    dependencies.dependsUpon.forEach(function(requiredModule) {
+      popDepFn(requiredModule, requireds);
+    });
 
-  dependencies[requiredArray].forEach(function(required) {
-    var newRequired = requiredArrayGetter(required);
-    if (requireds.indexOf(newRequired) === -1) {
-      requireds.push(newRequired);
-    }
-  });
+    dependencies[requiredArray].forEach(function(required) {
+      var newRequired = requiredArrayGetter(required);
+      if (requireds.indexOf(newRequired) === -1) {
+        requireds.push(newRequired);
+      }
+    });
 
-  return requireds;
+    return requireds;
+  };
+
+  return popDepFn;
 }
-/*
-function determineRequiredCldrGlobalizeFiles(globalizeOptions){
-  var requiredFiles = ['cldr.js', 'cldr/event.js', 'cldr/supplemental.js', 'globalize.js'];
-  if (globalizeOptions.currency)     { requiredFiles.push('globalize/currency.js'); }
-  if (globalizeOptions.date)         { requiredFiles.push('globalize/date.js'); }
-  if (globalizeOptions.message)      { requiredFiles.push('globalize/message.js'); }
-  if (globalizeOptions.number)       { requiredFiles.push('globalize/number.js'); }
-  if (globalizeOptions.plural)       { requiredFiles.push('globalize/plural.js'); }
-  if (globalizeOptions.relativeTime) { requiredFiles.push('globalize/relative-time.js'); }
 
-  return requiredFiles;
-}
-*/
 module.exports = {
   determineRequiredCldrData: determineRequiredCldrData,
   determineRequiredCldrGlobalizeFiles: determineRequiredCldrGlobalizeFiles
