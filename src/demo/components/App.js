@@ -23,7 +23,6 @@ class App extends React.Component {
   render() {
     const { modulesState } = this.state;
     const optionsSelected = Object.assign({}, ...Object.keys(modulesState).map(mod => ({ [`${mod}`]: modulesState[mod].isSelected })));
-    //const modules = Object.keys(modulesState).map(mod => <li key={mod}>{ mod + ': ' + modulesState[mod].isSelected }</li>);
     const requiredCldrJson = determineRequiredCldrData(optionsSelected).map(file => <li key={file}>{file}</li>);
     const requiredCldrGlobalizeFiles = determineRequiredCldrGlobalizeFiles(optionsSelected).map(file => <li key={file}>{file}</li>);
 
@@ -31,7 +30,7 @@ class App extends React.Component {
       <div className="container-fluid">
         <h1>Welcome to Globalize &middot; So What&#39;cha Want</h1>
 
-        <p>Tell me what <a href="https://github.com/jquery/globalize">Globalize</a> modules you want to use, I&#39;ll tell you what you need.</p>
+        <p>Tell me what <a href="https://github.com/jquery/globalize">Globalize</a> modules you want to use, I&#39;ll tell you what you need and in the order you need it.</p>
 
         <ModuleSelector modulesState={ modulesState } handleSelectionChange={ this._handleSelectionChange } />
 
