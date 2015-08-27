@@ -6,9 +6,9 @@ Tell me what Globalize modules you want to use, I'll tell you what you need and 
 
 ## Usage
 
-Globalize So What'cha Want exposes 2 methods:
+Globalize So What'cha Want exposes 2 methods; `determineRequiredCldrGlobalizeFiles` and `determineRequiredCldrData`.
 
-- `determineRequiredCldrGlobalizeFiles( options ) => string[]`
+#### `determineRequiredCldrGlobalizeFiles( options ) => string[]`
 
 The string array returned will contain a list of the required cldr / globalize files you need, listed in the order they are required.
 
@@ -36,7 +36,7 @@ var requiredCldrGlobalizeFiles = soWhatchaWant.determineRequiredCldrGlobalizeFil
 //   'globalize/relative-time.js']
 ```
 
-- `determineRequiredCldrData( options ) => string[]`
+#### `determineRequiredCldrData( options ) => string[]`
 
 The string array returned will contain a list of the required cldr json data you need.  I don't believe ordering matters for the json but it is listed in the same dependency order as the cldr / globalize files are.
 
