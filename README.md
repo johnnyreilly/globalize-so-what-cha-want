@@ -85,3 +85,7 @@ It's not necessary to specify each key and a `boolean` value. If you were only i
 ```
 var globalizeOptionsForDatesOnly = { date: true };
 ```
+
+### Web Tool
+
+If you don't want to use the package in the raw you can use this [online tool](http://johnnyreilly.github.io/globalize-so-what-cha-want/) which is built on top of the the globalize-so-what-cha-want package.

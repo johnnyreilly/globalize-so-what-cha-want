@@ -1,6 +1,6 @@
 {
   "name": "globalize-so-what-cha-want",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Tell me what Globalize modules you want to use, I'll tell you what you need.",
   "main": "index.js",
   "scripts": {
