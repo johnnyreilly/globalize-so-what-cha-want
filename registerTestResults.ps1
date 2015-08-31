@@ -9,7 +9,7 @@ foreach ($testsuite in $testsuites.testsuite) {
 
     foreach ($testcase in $testsuite.testcase){
         $failed = $testcase.failure
-        $time = [decimal]$testsuite.time * 1000 # from seconds to milliseconds
+        $time = [decimal]$testcase.time * 1000 # from seconds to milliseconds
         $testName = "$($testcase.classname) $($testcase.name)"
 
         if ($failed) {
