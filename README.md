@@ -1,6 +1,7 @@
 # Globalize So What'cha Want
 
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/johnnyreilly/globalize-so-what-cha-want?retina=true)](https://ci.appveyor.com/project/JohnReilly/globalize-so-what-cha-want)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/johnnyreilly/globalize-so-what-cha-want?retina=false)](https://ci.appveyor.com/project/JohnReilly/globalize-so-what-cha-want)
+[![NPM version](https://img.shields.io/npm/v/globalize-so-what-cha-want.svg)](https://www.npmjs.com/package/globalize-so-what-cha-want)
 
 Tell me what Globalize modules you want to use, I'll tell you what you need and in the order you need it.
 
