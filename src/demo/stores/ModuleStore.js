@@ -34,14 +34,7 @@ function _getNewState() {
 }
 
 function _cleanState() {
-  modulesState = {
-    currency     : false,
-    date         : true,
-    message      : false,
-    number       : true,
-    plural       : false,
-    relativeTime : false
-  };
+  modulesState = _getNewState();
 }
 
 function _dispatcherHandler(action) {
