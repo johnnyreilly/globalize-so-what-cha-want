@@ -1,4 +1,4 @@
-import { determineRequiredCldrData, determineRequiredCldrGlobalizeFiles } from '../index';
+import { determineRequiredCldrData, determineRequiredCldrGlobalizeFiles } from '../../index';
 
 const globalizeOptionsAll = {
   currency     : true,

@@ -1,0 +1,18 @@
+{
+    "compileOnSave": true,
+    "version": "1.6.0-beta",
+    "compilerOptions": {
+        "module": "commonjs",
+        "declaration": true,
+        "target": "es5",
+        "noImplicitAny": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "sourceMap": false,
+        "outDir": "../../"
+    },
+    "files": [
+        "index.ts"
+    ]
+}

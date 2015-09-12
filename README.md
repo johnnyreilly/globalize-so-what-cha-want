@@ -7,7 +7,7 @@ Tell me what Globalize modules you want to use, I'll tell you what you need and 
 
 ## Usage
 
-Globalize So What'cha Want exposes 2 methods; `determineRequiredCldrGlobalizeFiles` and `determineRequiredCldrData`.
+Globalize So What'cha Want exposes 2 methods; `determineRequiredCldrGlobalizeFiles` and `determineRequiredCldrData`. If you like TypeScript, you're in luck!  This ships with its very own definition file.
 
 #### `determineRequiredCldrGlobalizeFiles( options ) => string[]`
 
