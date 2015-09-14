@@ -1,7 +1,7 @@
 {
   "name": "globalize-so-what-cha-want",
-  "version": "0.9.0",
-  "description": "Tell me what Globalize modules you want to use, I'll tell you what you need.",
+  "version": "0.9.1",
+  "description": "Tell me what Globalize 1.x modules you want to use, I'll tell you what you need.",
   "main": "index.js",
   "scripts": {
     "test": "karma start --reporters mocha,junit --single-run --browsers PhantomJS",
