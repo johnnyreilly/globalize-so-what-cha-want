@@ -1,4 +1,5 @@
-import { determineRequiredCldrData, determineRequiredCldrGlobalizeFiles } from '../../index';
+/// <reference path="../../typings/jasmine/jasmine.d.ts" />
+import { determineRequiredCldrData, determineRequiredCldrGlobalizeFiles } from '../../src/lib/index';
 
 const globalizeOptionsAll = {
   currency     : true,

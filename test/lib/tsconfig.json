@@ -1,0 +1,19 @@
+{
+    "compileOnSave": false,
+    "filesGlob": [
+        "**/*.ts",
+        "../../typings/jasmine/jasmine.d.ts"
+    ],
+    "version": "1.6.0-beta",
+    "compilerOptions": {
+        "target": "es6",
+        "noImplicitAny": false,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "sourceMap": true
+    },
+    "files": [
+        "index.tests.ts",
+        "../../typings/jasmine/jasmine.d.ts"
+    ]
+}

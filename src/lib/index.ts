@@ -122,12 +122,12 @@ function _populateDependencyCurrier(
 }
 
 export interface Options {
-  currency: boolean;
-  date: boolean;
-  message: boolean;
-  number: boolean;
-  plural: boolean;
-  relativeTime: boolean;
+  currency?: boolean;
+  date?: boolean;
+  message?: boolean;
+  number?: boolean;
+  plural?: boolean;
+  relativeTime?: boolean;
 }
 
 /**

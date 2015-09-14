@@ -6,7 +6,7 @@ module.exports = function(config) {
     browsers: [ 'PhantomJS' ],
 
     files: [
-      'test/**/*.tests.js'
+      'test/**/*.tests.ts'
     ],
 
     port: 9876,
@@ -16,13 +16,14 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO, //config.LOG_DEBUG
 
     preprocessors: {
-      'src/**/*.js': [ 'browserify', 'coverage' ],
-      'test/**/*.tests.js': [ 'browserify' ]
+      'src/lib/**/*.ts': [ 'browserify', 'coverage' ],
+      'test/**/*.tests.ts': [ 'browserify' ]
     },
 
     // browserify configuration
     browserify: {
       debug: true,
+      plugin: [ 'tsify' ],
       transform: [
         ['babelify', { sourceMaps: false, stage: 3 }],
         'browserify-istanbul'
