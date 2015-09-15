@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "karma start --reporters mocha,junit --single-run --browsers PhantomJS",
-    "build-lib": "tsc -v&&cd ./src/lib&&tsc&&cd ../../",
+    "build-lib": "tsc -v&&tsc --project ./src/lib",
     "watch-demo": "gulp watch",
     "build-demo": "gulp build"
   },
