@@ -10,9 +10,7 @@
         "removeComments": false,
         "preserveConstEnums": true,
         "sourceMap": false,
-        "outDir": "../../",
-        "listFiles": true,
-        "diagnostics": true
+        "outDir": "../../"
     },
     "files": [
         "index.ts"
