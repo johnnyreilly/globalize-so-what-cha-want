@@ -1,4 +1,3 @@
-/* jshint varstmt: false, esnext: false */
 var DEPENDENCY_TYPES = {
     SHARED_JSON: 'Shared JSON (used by all locales)',
     LOCALE_JSON: 'Locale specific JSON (supplied for each locale)'

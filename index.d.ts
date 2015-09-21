@@ -1,10 +1,10 @@
 export interface Options {
-    currency: boolean;
-    date: boolean;
-    message: boolean;
-    number: boolean;
-    plural: boolean;
-    relativeTime: boolean;
+    currency?: boolean;
+    date?: boolean;
+    message?: boolean;
+    number?: boolean;
+    plural?: boolean;
+    relativeTime?: boolean;
 }
 /**
  * The string array returned will contain a list of the required cldr json data you need. I don't believe ordering matters for the json but it is listed in the same dependency order as the cldr / globalize files are.

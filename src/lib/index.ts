@@ -1,5 +1,4 @@
-/* jshint varstmt: false, esnext: false */
-var DEPENDENCY_TYPES = {
+const DEPENDENCY_TYPES = {
   SHARED_JSON: 'Shared JSON (used by all locales)',
   LOCALE_JSON: 'Locale specific JSON (supplied for each locale)'
 };
@@ -13,7 +12,7 @@ interface ModuleDependency {
   }[]
 }
 
-var moduleDependencies: { [key: string]: ModuleDependency } = {
+const moduleDependencies: { [key: string]: ModuleDependency } = {
   'core': {
     dependsUpon: [],
     cldrGlobalizeFiles: ['cldr.js', 'cldr/event.js', 'cldr/supplemental.js', 'globalize.js'],
@@ -81,14 +80,14 @@ interface DependencyPopulator {
 
 function determineRequired(globalizeOptions: Options, populateDependencies: DependencyPopulator) {
   var modules = Object.keys(globalizeOptions);
-  modules.forEach(function(module) {
+  modules.forEach(module => {
     if (!moduleDependencies[module]) {
       throw new TypeError('There is no \'' + module + '\' module');
     }
   });
 
   var requireds: string[] = [];
-  modules.forEach(function (module) {
+  modules.forEach(module => {
     if (globalizeOptions[module]) {
       populateDependencies(module, requireds);
     }
@@ -104,11 +103,11 @@ function _populateDependencyCurrier(
   var popDepFn = function(module: string, requireds: string[]) {
     var dependencies = moduleDependencies[module];
 
-    dependencies.dependsUpon.forEach(function(requiredModule) {
+    dependencies.dependsUpon.forEach(requiredModule => {
       popDepFn(requiredModule, requireds);
     });
 
-    dependencies[requiredArray].forEach(function(required: any) {
+    dependencies[requiredArray].forEach((required: any) => {
       var newRequired = requiredArrayGetter(required);
       if (requireds.indexOf(newRequired) === -1) {
         requireds.push(newRequired);
@@ -136,7 +135,7 @@ export interface Options {
  * @param options The globalize modules being used.
  */
 export function determineRequiredCldrData(globalizeOptions: Options) {
-  return determineRequired(globalizeOptions, _populateDependencyCurrier('json', function(json) { return json.dependency; }));
+  return determineRequired(globalizeOptions, _populateDependencyCurrier('json', json => json.dependency));
 }
 
 /**
@@ -145,5 +144,5 @@ export function determineRequiredCldrData(globalizeOptions: Options) {
  * @param options The globalize modules being used.
  */
 export function determineRequiredCldrGlobalizeFiles(globalizeOptions: Options) {
-  return determineRequired(globalizeOptions, _populateDependencyCurrier('cldrGlobalizeFiles', function(cldrGlobalizeFile) { return cldrGlobalizeFile; }));
+  return determineRequired(globalizeOptions, _populateDependencyCurrier('cldrGlobalizeFiles', cldrGlobalizeFile => cldrGlobalizeFile));
 }
