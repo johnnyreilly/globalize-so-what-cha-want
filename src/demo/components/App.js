@@ -23,8 +23,8 @@ class App extends React.Component {
   render() {
     const { modulesState } = this.state;
     const optionsSelected = Object.assign({}, ...Object.keys(modulesState).map(mod => ({ [`${mod}`]: modulesState[mod].isSelected })));
-    const requiredCldrJson = determineRequiredCldrData(optionsSelected).map(file => <li key={file}>{file}</li>);
-    const requiredCldrGlobalizeFiles = determineRequiredCldrGlobalizeFiles(optionsSelected).map(file => <li key={file}>{file}</li>);
+    const requiredCldrJson = determineRequiredCldrData(optionsSelected).map(file => <li key={ file }>{ file }</li>);
+    const requiredCldrGlobalizeFiles = determineRequiredCldrGlobalizeFiles(optionsSelected).map(file => <li key={ file }>{ file }</li>);
 
     return (
       <div className="container-fluid">

@@ -8,7 +8,7 @@ class ModuleSelector extends React.Component {
 
   render() {
     const { modulesState, handleSelectionChange } = this.props;
-    const modulesToSelect = Object.keys(modulesState).map(mod => <div className="col-md-4" key={mod}>
+    const modulesToSelect = Object.keys(modulesState).map(mod => <div className="col-md-4" key={ mod }>
         <Module
           moduleName={ mod }
           description={ modulesState[mod].description }
@@ -23,5 +23,10 @@ class ModuleSelector extends React.Component {
     );
   }
 }
+
+ModuleSelector.propTypes = {
+  handleSelectionChange: React.PropTypes.func.isRequired,
+  modulesState: React.PropTypes.object.isRequired
+};
 
 export default ModuleSelector;

@@ -1,4 +1,7 @@
+/* eslint-disable no-var, strict */
 'use strict';
+
+var webpackConfig = require('./webpack.config.js');
 
 module.exports = function(config) {
   // Documentation: https://karma-runner.github.io/0.13/config/configuration-file.html
@@ -6,28 +9,32 @@ module.exports = function(config) {
     browsers: [ 'PhantomJS' ],
 
     files: [
-      'test/**/*.tests.ts'
+      'src/demo/dependencies.js', // Ensure we don't distort code coverage by having both files and the imports supply code
+      'test/**/*.tests.js'
     ],
 
     port: 9876,
 
-    frameworks: [ 'jasmine', 'browserify', 'phantomjs-shim' ],
+    frameworks: [ 'jasmine', 'phantomjs-shim' ],
 
     logLevel: config.LOG_INFO, //config.LOG_DEBUG
 
     preprocessors: {
-      'src/lib/**/*.ts': [ 'browserify', 'coverage' ],
-      'test/**/*.tests.ts': [ 'browserify' ]
+      'src/**/*.js': [ 'webpack', 'sourcemap' ],
+      'test/**/*.tests.js': [ 'webpack', 'sourcemap' ]
     },
 
-    // browserify configuration
-    browserify: {
+    webpack: {
+      devtool: 'inline-source-map',
       debug: true,
-      plugin: [ 'tsify' ],
-      transform: [
-        ['babelify', { sourceMaps: false, stage: 3 }],
-        'browserify-istanbul'
-      ]
+      module: webpackConfig.module,
+    },
+
+    webpackMiddleware: {
+      quiet: true,
+      stats: {
+        colors: true
+      }
     },
 
     // reporter options

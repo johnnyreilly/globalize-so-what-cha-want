@@ -10,7 +10,7 @@ class Module extends React.Component {
     const fontClass = 'glyphicon ' + (this.props.isSelected ? 'glyphicon-ok' : 'glyphicon-remove');
     const panelClass = 'panel ' + (this.props.isSelected ? 'panel-success' : 'panel-danger');
     return (
-      <div className={ panelClass } style={{ cursor: 'pointer' }} onClick={ this._onSelectionChanged }>
+      <div className={ panelClass } style={ { cursor: 'pointer' } } onClick={ this._onSelectionChanged }>
         <div className="panel-heading">
           <h3 className="panel-title">
             { this.props.moduleName + ' ' }
@@ -30,9 +30,10 @@ class Module extends React.Component {
 }
 
 Module.propTypes = {
-  moduleName: React.PropTypes.string.isRequired,
+  description: React.PropTypes.string.isRequired,
+  handleSelectionChange: React.PropTypes.func.isRequired,
   isSelected: React.PropTypes.bool.isRequired,
-  handleSelectionChange: React.PropTypes.func.isRequired
+  moduleName: React.PropTypes.string.isRequired
 };
 
 export default Module;
