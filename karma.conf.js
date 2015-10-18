@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     files: [
       'src/demo/dependencies.js', // Ensure we don't distort code coverage by having both files and the imports supply code
-      'test/**/*.tests.js'
+      'test/**/*.tests.ts'
     ],
 
     port: 9876,
@@ -21,7 +21,10 @@ module.exports = function(config) {
 
     preprocessors: {
       'src/**/*.js': [ 'webpack', 'sourcemap' ],
-      'test/**/*.tests.js': [ 'webpack', 'sourcemap' ]
+      'src/**/*.ts': [ 'webpack', 'sourcemap' ],
+      'test/**/*.tests.ts': [ 'webpack', 'sourcemap' ]
+      // 'src/**/*.js': [ 'webpack', 'sourcemap' ],
+      // 'test/**/*.tests.js': [ 'webpack', 'sourcemap' ]
     },
 
     webpack: {

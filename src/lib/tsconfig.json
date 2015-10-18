@@ -1,6 +1,5 @@
 {
     "compileOnSave": true,
-    "version": "1.6.0-beta",
     "compilerOptions": {
         "module": "commonjs",
         "declaration": true,

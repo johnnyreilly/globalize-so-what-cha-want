@@ -22,6 +22,8 @@ build_script:
 
     npm run build-demo
 
+    npm run test
+
 before_test:
 - ps: >-
     ./registerTestResults.ps1

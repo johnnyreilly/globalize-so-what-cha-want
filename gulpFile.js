@@ -28,7 +28,7 @@ gulp.task('build-other', ['delete-dist', 'build-process.env.NODE_ENV'], function
   staticFiles.build();
 });
 
-gulp.task('build', ['build-less', 'build-js', 'build-other', 'lint'], function () {
+gulp.task('build', ['build-js', 'build-other', 'lint'], function () {
   inject.build();
 });
 
