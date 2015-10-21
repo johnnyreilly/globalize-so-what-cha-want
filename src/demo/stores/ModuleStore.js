@@ -29,7 +29,8 @@ function _getNewState() {
     message      : { isSelected: false, description: 'Message module provides ICU message format support' },
     number       : { isSelected: true,  description: 'Number module provides number formatting and parsing' },
     plural       : { isSelected: false, description: 'Plural module provides pluralization support' },
-    relativeTime : { isSelected: false, description: 'Relative time module provides relative time formatting support' }
+    relativeTime : { isSelected: false, description: 'Relative time module provides relative time formatting support' },
+    unit         : { isSelected: false, description: 'Unit module provides unit formatting support' }
   };
 }
 

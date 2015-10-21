@@ -71,6 +71,14 @@ const moduleDependencies: { [key: string]: ModuleDependency } = {
     json: [
       { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/dateFields.json' }
     ]
+  },
+
+  'unit': {
+    dependsUpon: ['number','plural'],
+    cldrGlobalizeFiles: ['globalize/unit.js'],
+    json: [
+      { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/unit.json' }
+    ]
   }
 };
 
@@ -127,6 +135,7 @@ export interface Options {
   number?: boolean;
   plural?: boolean;
   relativeTime?: boolean;
+  unit?: boolean;
 }
 
 /**

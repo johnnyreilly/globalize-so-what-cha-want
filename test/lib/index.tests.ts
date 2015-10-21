@@ -6,7 +6,8 @@ const globalizeOptionsAll = {
   message      : true,
   number       : true,
   plural       : true,
-  relativeTime : true
+  relativeTime : true,
+  unit         : true
 };
 
 const globalizeOptionsDateNumber = {
@@ -30,11 +31,12 @@ describe('determineRequiredCldrData', () => {
       'cldr/main/{locale}/timeZoneNames.json',
       'cldr/supplemental/timeData.json',
       'cldr/supplemental/weekData.json',
-      'cldr/main/{locale}/dateFields.json'
+      'cldr/main/{locale}/dateFields.json',
+      'cldr/main/{locale}/unit.json'
     ]);
   });
 
-  it('should return subset of JSON requiredments', () => {
+  it('should return date and number JSON requiredments', () => {
     const requiredCldrData = determineRequiredCldrData(globalizeOptionsDateNumber);
     expect(requiredCldrData).toEqual([
       'cldr/supplemental/likelySubtags.json',
@@ -61,11 +63,12 @@ describe('determineRequiredCldrGlobalizeFiles', () => {
       'globalize/currency.js',
       'globalize/date.js',
       'globalize/message.js',
-      'globalize/relative-time.js'
+      'globalize/relative-time.js',
+      'globalize/unit.js'
     ]);
   });
 
-  it('should return subset of cldr / globalize files', () => {
+  it('should return date and number of cldr / globalize files', () => {
     const requiredCldrGlobalizeFiles = determineRequiredCldrGlobalizeFiles(globalizeOptionsDateNumber);
     expect(requiredCldrGlobalizeFiles).toEqual([
       'cldr.js',

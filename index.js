@@ -55,6 +55,13 @@ var moduleDependencies = {
         json: [
             { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/dateFields.json' }
         ]
+    },
+    'unit': {
+        dependsUpon: ['number', 'plural'],
+        cldrGlobalizeFiles: ['globalize/unit.js'],
+        json: [
+            { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/unit.json' }
+        ]
     }
 };
 function determineRequired(globalizeOptions, populateDependencies) {
