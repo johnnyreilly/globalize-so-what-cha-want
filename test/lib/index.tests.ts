@@ -1,4 +1,4 @@
-import { determineRequiredCldrData, determineRequiredCldrGlobalizeFiles } from '../../';
+import { determineRequiredCldrData, determineRequiredCldrGlobalizeFiles } from '../../src/lib/index';
 
 const globalizeOptionsAll = {
   currency     : true,
@@ -14,7 +14,6 @@ const globalizeOptionsDateNumber = {
   date         : true,
   number       : true
 };
-
 
 describe('determineRequiredCldrData', () => {
   it('should return all JSON requiredments', () => {

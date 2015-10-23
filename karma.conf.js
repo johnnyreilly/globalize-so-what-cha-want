@@ -9,7 +9,7 @@ module.exports = function(config) {
     browsers: [ 'PhantomJS' ],
 
     files: [
-      'src/demo/dependencies.js', // Ensure we don't distort code coverage by having both files and the imports supply code
+      'src/demo/dependencies.js', // This ensures we have the es6 shims in place from babel
       'test/**/*.tests.ts'
     ],
 
@@ -20,17 +20,15 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO, //config.LOG_DEBUG
 
     preprocessors: {
-      'src/**/*.js': [ 'webpack', 'sourcemap' ],
-      'src/**/*.ts': [ 'webpack', 'sourcemap' ],
+      'src/**/*.{js,ts,tsx}': [ 'webpack', 'sourcemap' ],
       'test/**/*.tests.ts': [ 'webpack', 'sourcemap' ]
-      // 'src/**/*.js': [ 'webpack', 'sourcemap' ],
-      // 'test/**/*.tests.js': [ 'webpack', 'sourcemap' ]
     },
 
     webpack: {
       devtool: 'inline-source-map',
       debug: true,
       module: webpackConfig.module,
+      resolve: webpackConfig.resolve
     },
 
     webpackMiddleware: {
