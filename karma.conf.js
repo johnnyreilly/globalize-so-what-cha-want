@@ -9,7 +9,7 @@ module.exports = function(config) {
     browsers: [ 'PhantomJS' ],
 
     files: [
-      'src/demo/dependencies.js', // This ensures we have the es6 shims in place from babel
+      'src/demo/dependencies.ts', // This ensures we have the es6 shims in place from babel
       'test/**/*.tests.ts'
     ],
 

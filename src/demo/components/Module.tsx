@@ -1,9 +1,23 @@
-import React from 'react/addons';
+import * as React from 'react/addons';
 
-class Module extends React.Component {
+interface Props {
+  moduleName: string;
+  isSelected: boolean;
+  description: string;
+  handleSelectionChange: (moduleName: string) => void;
+}
+
+class Module extends React.Component<Props, any> {
   constructor(props) {
     super(props);
     this._onSelectionChanged = this._onSelectionChanged.bind(this);
+  }
+
+  static propTypes = {
+    description: React.PropTypes.string.isRequired,
+    handleSelectionChange: React.PropTypes.func.isRequired,
+    isSelected: React.PropTypes.bool.isRequired,
+    moduleName: React.PropTypes.string.isRequired
   }
 
   render() {
@@ -28,12 +42,5 @@ class Module extends React.Component {
     this.props.handleSelectionChange(this.props.moduleName);
   }
 }
-
-Module.propTypes = {
-  description: React.PropTypes.string.isRequired,
-  handleSelectionChange: React.PropTypes.func.isRequired,
-  isSelected: React.PropTypes.bool.isRequired,
-  moduleName: React.PropTypes.string.isRequired
-};
 
 export default Module;
