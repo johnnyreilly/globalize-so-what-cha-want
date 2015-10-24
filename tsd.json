@@ -6,7 +6,16 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "jasmine/jasmine.d.ts": {
-      "commit": "7a3ca1f0b8a0960af9fc1838f3234cc9d6ce0645"
+      "commit": "3191f6e0088eee07c4d8fd24e4d27a40a60d9eb9"
+    },
+    "flux/flux.d.ts": {
+      "commit": "3191f6e0088eee07c4d8fd24e4d27a40a60d9eb9"
+    },
+    "node/node.d.ts": {
+      "commit": "3191f6e0088eee07c4d8fd24e4d27a40a60d9eb9"
+    },
+    "react/react.d.ts": {
+      "commit": "3191f6e0088eee07c4d8fd24e4d27a40a60d9eb9"
     }
   }
 }

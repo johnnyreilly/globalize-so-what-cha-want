@@ -11,7 +11,7 @@ class ModuleSelector extends React.Component<Props, any> {
     super(props);
   }
 
-  static propTypes = {
+  static propTypes: React.ValidationMap<Props> = {
     handleSelectionChange: React.PropTypes.func.isRequired,
     modulesState: React.PropTypes.object.isRequired
   }

@@ -13,7 +13,7 @@ class Module extends React.Component<Props, any> {
     this._onSelectionChanged = this._onSelectionChanged.bind(this);
   }
 
-  static propTypes = {
+  static propTypes: React.ValidationMap<Props> = {
     description: React.PropTypes.string.isRequired,
     handleSelectionChange: React.PropTypes.func.isRequired,
     isSelected: React.PropTypes.bool.isRequired,
