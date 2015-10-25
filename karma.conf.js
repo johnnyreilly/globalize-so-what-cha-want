@@ -21,7 +21,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO, //config.LOG_DEBUG
 
     preprocessors: {
-      'src/**/*.{js,ts,tsx}': [ 'webpack', 'sourcemap' ],
+      'src/**/*.{ts,tsx}': [ 'webpack', 'sourcemap' ],
       'test/**/*.tests.{ts,tsx}': [ 'webpack', 'sourcemap' ]
     },
 
