@@ -10,7 +10,8 @@ module.exports = function(config) {
 
     files: [
       'src/demo/dependencies.ts', // This ensures we have the es6 shims in place from babel
-      'test/**/*.tests.ts'
+      'test/**/*.tests.ts',
+      'test/**/*.tests.tsx'
     ],
 
     port: 9876,
@@ -21,7 +22,7 @@ module.exports = function(config) {
 
     preprocessors: {
       'src/**/*.{js,ts,tsx}': [ 'webpack', 'sourcemap' ],
-      'test/**/*.tests.ts': [ 'webpack', 'sourcemap' ]
+      'test/**/*.tests.{ts,tsx}': [ 'webpack', 'sourcemap' ]
     },
 
     webpack: {

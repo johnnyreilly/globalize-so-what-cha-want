@@ -3,14 +3,14 @@
 
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var webpack = require('./gulp/webpack');
 var eslint = require('gulp-eslint');
+var webpack = require('./gulp/webpack');
 var staticFiles = require('./gulp/staticFiles');
 var tests = require('./gulp/tests');
 var clean = require('./gulp/clean');
 var inject = require('./gulp/inject');
 
-var lintSrcs = ['./gulp/**/*.js', './src/**/*.js'];//, './test/**/*.js'];
+var lintSrcs = ['./gulp/**/*.js'];
 
 gulp.task('delete-dist', function (done) {
   clean.run(done);
