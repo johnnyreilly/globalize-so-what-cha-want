@@ -21,6 +21,7 @@ function buildProduction(done) {
   webpack(myProdConfig, function(err, stats) {
     if(err) { throw new gutil.PluginError('webpack:build', err); }
     gutil.log('[webpack:build]', stats.toString({
+      chunks: false,
       colors: true
     }));
 
