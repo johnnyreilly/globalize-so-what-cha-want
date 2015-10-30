@@ -2,6 +2,7 @@
     "compileOnSave": false,
     "filesGlob": [
         "../../typings/**/*.*.ts",
+        "!../../typings/jasmine/jasmine.d.ts",
         "**/*.{ts,tsx}"
     ],
     "compilerOptions": {
@@ -14,7 +15,6 @@
     },
     "files": [
         "../../typings/flux/flux.d.ts",
-        "../../typings/jasmine/jasmine.d.ts",
         "../../typings/node/node.d.ts",
         "../../typings/react/react.d.ts",
         "../../typings/tsd.d.ts",
@@ -27,7 +27,9 @@
         "dispatcher/AppDispatcher.ts",
         "main.tsx",
         "stores/FluxStore.ts",
-        "stores/ModuleStore.ts"
+        "stores/ModuleStore.ts",
+        "types/ModuleDetails.ts",
+        "types/ModuleState.ts"
     ],
     "exclude": []
 }

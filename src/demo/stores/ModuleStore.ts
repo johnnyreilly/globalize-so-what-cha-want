@@ -1,7 +1,7 @@
 import FluxStore from './FluxStore';
 import ModuleActionTypes from '../constants/action-types/ModuleActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
-
+import ModulesState from '../types/ModuleState';
 let modulesState = _getNewState();
 
 class ModuleStore extends FluxStore {
@@ -22,7 +22,7 @@ moduleStoreInstance.dispatchToken = AppDispatcher.register(_dispatcherHandler);
 moduleStoreInstance._dispatcherHandler = _dispatcherHandler;
 moduleStoreInstance._cleanState = _cleanState;
 
-function _getNewState() {
+function _getNewState(): ModulesState {
   return {
     currency     : { isSelected: false, description: 'Currency module provides currency formatting and parsing' },
     date         : { isSelected: true,  description: 'Date module provides date formatting and parsing' },
