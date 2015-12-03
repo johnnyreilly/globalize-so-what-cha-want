@@ -3,6 +3,7 @@
     "filesGlob": [
         "../../typings/**/*.*.ts",
         "!../../typings/jasmine/jasmine.d.ts",
+        "!../typings/react/react-addons-test-utils.d.ts",
         "**/*.{ts,tsx}"
     ],
     "compilerOptions": {
@@ -16,6 +17,8 @@
     "files": [
         "../../typings/flux/flux.d.ts",
         "../../typings/node/node.d.ts",
+        "../../typings/react/react-addons-test-utils.d.ts",
+        "../../typings/react/react-dom.d.ts",
         "../../typings/react/react.d.ts",
         "../../typings/tsd.d.ts",
         "actions/ModuleActions.ts",
@@ -31,5 +34,8 @@
         "types/ModuleDetails.ts",
         "types/ModuleState.ts"
     ],
-    "exclude": []
+    "exclude": [],
+    "atom": {
+        "rewriteTsconfig": true
+    }
 }

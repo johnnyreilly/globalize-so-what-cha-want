@@ -1,7 +1,7 @@
-import * as React from 'react/addons';
+import * as React from 'react';
+import * as TestUtils from 'react-addons-test-utils';
 import Module from '../../../src/demo/components/Module';
-
-const { TestUtils } = React.addons;
+const __react = React; // only in place to prevent React being purged from dependencies as not used directly
 
 describe('Module', () => {
   let handleSelectionChangeSpy: jasmine.Spy;

@@ -1,4 +1,4 @@
-import * as React from 'react/addons';
+import * as React from 'react';
 import Module from './Module';
 
 interface Props {

@@ -1,4 +1,4 @@
-import * as React from 'react/addons';
+import * as React from 'react';
 
 interface Props {
   moduleName: string;

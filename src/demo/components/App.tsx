@@ -1,4 +1,4 @@
-import * as React from 'react/addons';
+import * as React from 'react';
 import ModuleStore from '../stores/ModuleStore';
 import ModuleSelector from './ModuleSelector';
 import * as ModuleActions from '../actions/ModuleActions';
