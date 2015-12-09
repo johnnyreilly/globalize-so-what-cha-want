@@ -5,16 +5,19 @@ import * as ModuleActions from '../actions/ModuleActions';
 import ModulesState from '../types/ModuleState';
 import { determineRequiredCldrData, determineRequiredCldrGlobalizeFiles } from '../../../index';
 
+interface Props {
+  location: HistoryModule.Location;
+  history: HistoryModule.History;
+}
 interface State {
   modulesState: ModulesState
 }
 
-class App extends React.Component<any, State> {
+class App extends React.Component<Props, State> {
   constructor(props) {
     super(props);
-    this._onChange = this._onChange.bind(this);
-    this._handleSelectionChange = this._handleSelectionChange.bind(this);
     this.state = this._getStateFromStores();
+    ModuleActions.routeChanged(this.props.location.query as any); // should only be hit when the app initialises
   }
 
   componentWillMount() {
@@ -27,6 +30,7 @@ class App extends React.Component<any, State> {
 
   render() {
     const { modulesState } = this.state;
+
     const optionsSelected = Object.assign({}, ...Object.keys(modulesState).map(mod => ({ [`${mod}`]: modulesState[mod].isSelected })));
     const requiredCldrJson = determineRequiredCldrData(optionsSelected).map(file => <li key={ file }>{ file }</li>);
     const requiredCldrGlobalizeFiles = determineRequiredCldrGlobalizeFiles(optionsSelected).map(file => <li key={ file }>{ file }</li>);
@@ -58,16 +62,25 @@ class App extends React.Component<any, State> {
     );
   }
 
-  _onChange() {
+  _getStateFromStores() {
+    return ModuleStore.getState();
+  }
+
+  _onChange = () => {
     this.setState(this._getStateFromStores());
   }
 
-  _handleSelectionChange(moduleName) {
-    ModuleActions.moduleChanged(moduleName);
-  }
+  _handleSelectionChange = (moduleName: string) => {
+    const { modulesState } = this.state;
 
-  _getStateFromStores() {
-    return ModuleStore.getState();
+    const existingSelectedModuleState = modulesState[moduleName];
+    const newSelectedModuleState = Object.assign({}, existingSelectedModuleState, { isSelected: !existingSelectedModuleState.isSelected });
+    const newModulesState = Object.assign({}, modulesState, { [moduleName]: newSelectedModuleState } );
+
+    const newModulesStateQueryString = Object.keys(newModulesState).map(moduleName => moduleName + '=' + newModulesState[moduleName].isSelected).join('&');
+    this.props.history.pushState(null, '/?' + newModulesStateQueryString);
+
+    ModuleActions.moduleChanged(moduleName);
   }
 }
 

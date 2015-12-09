@@ -1,6 +1,8 @@
 import ModuleDetails from './ModuleDetails';
 
 interface ModulesState {
+  [index: string]: ModuleDetails;
+  
   currency     : ModuleDetails;
   date         : ModuleDetails;
   message      : ModuleDetails;

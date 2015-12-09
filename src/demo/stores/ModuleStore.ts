@@ -25,9 +25,9 @@ moduleStoreInstance._cleanState = _cleanState;
 function _getNewState(): ModulesState {
   return {
     currency     : { isSelected: false, description: 'Currency module provides currency formatting and parsing' },
-    date         : { isSelected: true,  description: 'Date module provides date formatting and parsing' },
+    date         : { isSelected: false, description: 'Date module provides date formatting and parsing' },
     message      : { isSelected: false, description: 'Message module provides ICU message format support' },
-    number       : { isSelected: true,  description: 'Number module provides number formatting and parsing' },
+    number       : { isSelected: false, description: 'Number module provides number formatting and parsing' },
     plural       : { isSelected: false, description: 'Plural module provides pluralization support' },
     relativeTime : { isSelected: false, description: 'Relative time module provides relative time formatting support' },
     unit         : { isSelected: false, description: 'Unit module provides unit formatting support' }
@@ -44,6 +44,16 @@ function _dispatcherHandler(action) {
       const { globModule } = action;
       modulesState[globModule].isSelected = !modulesState[globModule].isSelected;
       moduleStoreInstance.emitChange();
+      break;
+    case ModuleActionTypes.ROUTE_CHANGED:
+      const { selectedModules } = action;
+      const before = JSON.stringify(modulesState);
+      Object.keys(selectedModules as { [moduleName: string]: string })
+        .forEach(m => modulesState[m].isSelected = selectedModules[m] === 'true');
+      const after = JSON.stringify(modulesState);
+      if (before !== after) {
+        moduleStoreInstance.emitChange();
+      }
       break;
   }
 }
