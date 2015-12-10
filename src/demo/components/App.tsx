@@ -1,7 +1,6 @@
 import * as React from 'react';
 import ModuleStore from '../stores/ModuleStore';
 import ModuleSelector from './ModuleSelector';
-import * as ModuleActions from '../actions/ModuleActions';
 import ModulesState from '../types/ModuleState';
 import { determineRequiredCldrData, determineRequiredCldrGlobalizeFiles } from '../../../index';
 
@@ -9,6 +8,7 @@ interface Props {
   location: HistoryModule.Location;
   history: HistoryModule.History;
 }
+
 interface State {
   modulesState: ModulesState
 }
@@ -17,7 +17,6 @@ class App extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = this._getStateFromStores();
-    ModuleActions.routeChanged(this.props.location.query as any); // should only be hit when the app initialises
   }
 
   componentWillMount() {
@@ -79,8 +78,6 @@ class App extends React.Component<Props, State> {
 
     const newModulesStateQueryString = Object.keys(newModulesState).map(moduleName => moduleName + '=' + newModulesState[moduleName].isSelected).join('&');
     this.props.history.pushState(null, '/?' + newModulesStateQueryString);
-
-    ModuleActions.moduleChanged(moduleName);
   }
 }
 
