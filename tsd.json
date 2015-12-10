@@ -5,23 +5,29 @@
   "path": "typings",
   "bundle": "typings/tsd.d.ts",
   "installed": {
-    "jasmine/jasmine.d.ts": {
-      "commit": "fa04c80f4a889613b96cb4f283848c61a9f64233"
-    },
     "flux/flux.d.ts": {
-      "commit": "fa04c80f4a889613b96cb4f283848c61a9f64233"
+      "commit": "923c5431d9447db9d5cf41adc5914e3c94c1ff10"
+    },
+    "jasmine/jasmine.d.ts": {
+      "commit": "923c5431d9447db9d5cf41adc5914e3c94c1ff10"
     },
     "node/node.d.ts": {
-      "commit": "fa04c80f4a889613b96cb4f283848c61a9f64233"
+      "commit": "923c5431d9447db9d5cf41adc5914e3c94c1ff10"
     },
     "react/react.d.ts": {
-      "commit": "fa04c80f4a889613b96cb4f283848c61a9f64233"
+      "commit": "923c5431d9447db9d5cf41adc5914e3c94c1ff10"
     },
     "react/react-dom.d.ts": {
-      "commit": "fa04c80f4a889613b96cb4f283848c61a9f64233"
+      "commit": "923c5431d9447db9d5cf41adc5914e3c94c1ff10"
     },
     "react/react-addons-test-utils.d.ts": {
-      "commit": "fa04c80f4a889613b96cb4f283848c61a9f64233"
-     }
+      "commit": "923c5431d9447db9d5cf41adc5914e3c94c1ff10"
+    },
+    "react-router/react-router.d.ts": {
+      "commit": "923c5431d9447db9d5cf41adc5914e3c94c1ff10"
+    },
+    "react-router/history.d.ts": {
+      "commit": "923c5431d9447db9d5cf41adc5914e3c94c1ff10"
+    }
   }
 }
