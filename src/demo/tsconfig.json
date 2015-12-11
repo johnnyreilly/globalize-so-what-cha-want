@@ -28,7 +28,6 @@
         "components/Module.tsx",
         "components/ModuleSelector.tsx",
         "constants/action-types/ModuleActionTypes.ts",
-        "dependencies.ts",
         "dispatcher/AppDispatcher.ts",
         "main.tsx",
         "stores/FluxStore.ts",

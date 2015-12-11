@@ -1,4 +1,4 @@
-import './dependencies';
+import 'babel-polyfill';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Router, Route } from 'react-router';
