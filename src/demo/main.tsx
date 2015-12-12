@@ -12,10 +12,14 @@ var history = useQueries(createHistory)({
   queryKey: false
 });
 
-history.listen((location) => { ModuleActions.routeChanged(location.query as { [moduleName: string]: string }); });
+// Respond to route changes
+history.listen(location => { ModuleActions.routeChanged(location.query as { [moduleName: string]: string }); });
 
 ReactDOM.render((
   <Router history={ history }>
     <Route path="/" component={ App } />
   </Router>
 ), document.getElementById('content'));
+
+// Initial state
+history.pushState(null, '/?currency=true&date=true&message=true&number=true&plural=true&relativeTime=true&unit=true');
