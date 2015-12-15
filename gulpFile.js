@@ -4,6 +4,7 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var eslint = require('gulp-eslint');
+var less = require('./gulp/less');
 var webpack = require('./gulp/webpack');
 var staticFiles = require('./gulp/staticFiles');
 var tests = require('./gulp/tests');
@@ -20,6 +21,10 @@ gulp.task('build-process.env.NODE_ENV', function () {
   process.env.NODE_ENV = 'production';
 });
 
+gulp.task('build-less', ['delete-dist', 'build-process.env.NODE_ENV'], function(done) {
+  less.build().then(function() { done(); });
+});
+
 gulp.task('build-js', ['delete-dist', 'build-process.env.NODE_ENV'], function(done) {
   webpack.build().then(function() { done(); });
 });
@@ -28,7 +33,7 @@ gulp.task('build-other', ['delete-dist', 'build-process.env.NODE_ENV'], function
   staticFiles.build();
 });
 
-gulp.task('build', ['build-js', 'build-other', 'lint'], function () {
+gulp.task('build', ['build-less', 'build-js', 'build-other', 'lint'], function () {
   inject.build();
 });
 
@@ -41,8 +46,8 @@ gulp.task('lint', function () {
 gulp.task('watch', ['delete-dist'], function() {
   process.env.NODE_ENV = 'development';
   Promise.all([
-    webpack.watch()//,
-    //less.watch()
+    webpack.watch(),
+    less.watch()
   ]).then(function() {
     gutil.log('Now that initial assets (js and css) are generated inject will start...');
     inject.watch();
