@@ -22,7 +22,7 @@ class Module extends React.Component<Props, any> {
 
   render() {
     const fontClass = 'glyphicon ' + (this.props.isSelected ? 'glyphicon-ok' : 'glyphicon-remove');
-    const panelClass = 'panel ' + (this.props.isSelected ? 'panel-success' : 'panel-danger');
+    const panelClass = 'panel ' + (this.props.isSelected ? 'panel-success' : 'panel-warning');
     return (
       <div className={ panelClass } style={ { cursor: 'pointer' } } onClick={ this._onSelectionChanged }>
         <div className="panel-heading">

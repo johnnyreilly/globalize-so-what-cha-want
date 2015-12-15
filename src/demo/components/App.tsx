@@ -40,6 +40,8 @@ class App extends React.Component<Props, State> {
 
         <p>Tell me what <a href="https://github.com/jquery/globalize">Globalize</a> modules you want to use, I&#39;ll tell you what you need and in the order you need it.</p>
 
+        <p>Click on the panels below to select and deselect the modules you are interested in.</p>
+
         <ModuleSelector modulesState={ modulesState } handleSelectionChange={ this._handleSelectionChange } />
 
         <div className="row">
