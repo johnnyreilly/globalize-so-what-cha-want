@@ -2,6 +2,7 @@ version: 1.0.{build}
 
 # environment variables
 environment:
+  nodejs_version: "5.0"
   GithubEmail: johnny_reilly@hotmail.com
   GithubUsername: johnnyreilly
   GithubPersonalAccessToken:
