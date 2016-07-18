@@ -1,0 +1,13 @@
+{
+  "name": "globalize-so-what-cha-want",
+  "globalDependencies": {
+    "flux": "github:DefinitelyTyped/DefinitelyTyped/flux/flux.d.ts#923c5431d9447db9d5cf41adc5914e3c94c1ff10",
+    "jasmine": "github:DefinitelyTyped/DefinitelyTyped/jasmine/jasmine.d.ts#923c5431d9447db9d5cf41adc5914e3c94c1ff10",
+    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#923c5431d9447db9d5cf41adc5914e3c94c1ff10",
+    "react": "github:DefinitelyTyped/DefinitelyTyped/react/react.d.ts#923c5431d9447db9d5cf41adc5914e3c94c1ff10",
+    "react-dom": "github:DefinitelyTyped/DefinitelyTyped/react/react-dom.d.ts#923c5431d9447db9d5cf41adc5914e3c94c1ff10",
+    "react-addons-test-utils": "github:DefinitelyTyped/DefinitelyTyped/react/react-addons-test-utils.d.ts#923c5431d9447db9d5cf41adc5914e3c94c1ff10",
+    "react-router": "github:DefinitelyTyped/DefinitelyTyped/react-router/react-router.d.ts#923c5431d9447db9d5cf41adc5914e3c94c1ff10",
+    "history": "github:DefinitelyTyped/DefinitelyTyped/react-router/history.d.ts#923c5431d9447db9d5cf41adc5914e3c94c1ff10"
+  }
+}

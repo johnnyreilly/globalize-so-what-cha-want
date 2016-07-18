@@ -16,15 +16,14 @@
     "files": [
         "demo/components/Module.tests.tsx",
         "lib/index.tests.ts",
-        "../typings/flux/flux.d.ts",
-        "../typings/jasmine/jasmine.d.ts",
-        "../typings/node/node.d.ts",
-        "../typings/react-router/history.d.ts",
-        "../typings/react-router/react-router.d.ts",
-        "../typings/react/react-addons-test-utils.d.ts",
-        "../typings/react/react-dom.d.ts",
-        "../typings/react/react.d.ts",
-        "../typings/tsd.d.ts"
+        "../typings/globals/flux/index.d.ts",
+        "../typings/globals/node/index.d.ts",
+        "../typings/globals/history/index.d.ts",
+        "../typings/globals/react-router/index.d.ts",
+        "../typings/globals/react-addons-test-utils/index.d.ts",
+        "../typings/globals/react-dom/index.d.ts",
+        "../typings/globals/react/index.d.ts",
+        "../typings/globals/jasmine/index.d.ts"
     ],
     "exclude": [],
     "atom": {
