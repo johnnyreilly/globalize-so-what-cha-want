@@ -73,7 +73,7 @@
   },
   "dependencies": {
     "flux": "^2.0.3",
-    "history": "~1.13.1",
+    "history": "~1.17.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-router": "^1.0.0"
