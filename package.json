@@ -8,7 +8,8 @@
     "build-lib": "tsc -v&&cd ./src/lib&&tsc&&cd ../../",
     "watch-demo": "gulp watch",
     "build-demo": "gulp build",
-    "lint": "gulp lint"
+    "lint": "gulp lint",
+    "postinstall": "typings install"
   },
   "repository": {
     "type": "git",

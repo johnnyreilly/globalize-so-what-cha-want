@@ -16,10 +16,6 @@ before_build:
 - cmd: >-
     npm install
 
-    npm install tsd -g
-
-    tsd install
-
 build_script:
 - cmd: >-
     npm run build-lib
