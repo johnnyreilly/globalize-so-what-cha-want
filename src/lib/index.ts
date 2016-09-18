@@ -77,7 +77,7 @@ const moduleDependencies: { [key: string]: ModuleDependency } = {
     dependsUpon: ['number','plural'],
     cldrGlobalizeFiles: ['globalize/unit.js'],
     json: [
-      { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/unit.json' }
+      { dependencyType: DEPENDENCY_TYPES.LOCALE_JSON, dependency: 'cldr/main/{locale}/units.json' }
     ]
   }
 };
