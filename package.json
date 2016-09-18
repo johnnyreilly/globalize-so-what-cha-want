@@ -63,7 +63,7 @@
     "karma-phantomjs-shim": "^1.1.1",
     "karma-sourcemap-loader": "^0.3.6",
     "karma-webpack": "^1.7.0",
-    "phantomjs": "^1.9.17",
+    "phantomjs-prebuilt": "^2.1.12",
     "react-addons-test-utils": "^0.14.3",
     "ts-loader": "^0.8.2",
     "typescript": "^1.8.0",
