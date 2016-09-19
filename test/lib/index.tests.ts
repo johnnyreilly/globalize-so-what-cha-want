@@ -31,7 +31,7 @@ describe('determineRequiredCldrData', () => {
       'cldr/supplemental/timeData.json',
       'cldr/supplemental/weekData.json',
       'cldr/main/{locale}/dateFields.json',
-      'cldr/main/{locale}/unit.json'
+      'cldr/main/{locale}/units.json'
     ]);
   });
 
